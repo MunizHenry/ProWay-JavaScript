@@ -68,9 +68,6 @@
 // div.innerHTML = postHTML
 
 
-
-
-
 //  operador de atribuição
 // var nome = "Henry";
 // nome += " Muniz"
@@ -163,7 +160,12 @@
 
 
 
-//iniciando jquery
+//INICIANDO JQUERY
+// $(function (){
+//     valores
+// })
+
+//Pratica
 $(function () {
     var estados = {
         '12': 'Acre',
@@ -203,10 +205,66 @@ $(function () {
 
     $('select[name="estados"]').html(options);
 
-    
+
     $('.estados').change(function () {
         let estado = $(this).val();
-        $(this).addClass('estadosDoBrasil');
-        console.log(estado);
+        $(this).addClass('estadosDoBrasil'); // addClass adiciona uma classe ao elemento
+
+        $(this).attr('data-id', 10); //attr adc atibutos ao elemento HTML
+
+        //ler o valor de um atributo
+        // var nomeSelect =$(this).attr('data-desc');
+        // alert(nomeSelect)
+
+        //verificar se uma classe existe no elemento
+        var existeClass = $(this).hasClass('estadosdoBrasil');
+        // alert(existeClass)
+
+        //çatribuindo um seletor em uma variável
+        let seletor = '.preencher';
+
+        //injetar conteúdo dentro de um elemento (textos,tags)
+        //${variavel} > chmar variável dentro de string literal com craze
+        $(seletor).html(`O estado selecionado é ${estados[estado]}`);
+
+        //remover atriuto de um elemento 
+        $(this).removeAttr('data-desc');
+
+        //remover uma clase específica
+        //   $('.preencher').removeClass('vermelho');
+
+
+        //trocar classe no elemento 
+        $('.preencher').toggleClass(['vermelho', 'verde'])
+
+        //Trocar/Adc propriedades css em um elemento
+        $('h1').css({
+            'background': 'yellow',
+            'font-size': '50px'
+        })
+
+        //controlar altura de um elemento 
+        // $('.preencher').height(150)
+        // $('.preencher').delay(1000).animate({
+        //     'height': '150px',
+        //     'opacity': '0'
+        // },1000, 'swing')
+
+        $('.preencher').fadeTo('slow', 0.5, function () {
+            $(this).delay(2000).fadeTo('slow', 1)
+        });
+
+
     })
+
+    //rolar para um determinado ponto 
+    $('.goTop').click(function () {
+        $(document).scrollTop(400);
+        return false;
+    })
+    //trocar cor a cada 1 segundo 
+    // setInterval(() => {
+    //   $('.preencher').toggleClass(['vermelho', 'verde', 'azul'])
+    //  }, 300);
+
 })
